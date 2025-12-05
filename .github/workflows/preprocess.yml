@@ -18,6 +18,14 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Debug repo contents
+        run: |
+          echo "PWD: $(pwd)"
+          ls -la
+          ls -la SMSML_Sahrul-Firdaus/Eksperimen_SML_Sahrul-Firdaus || true
+          ls -la SMSML_Sahrul-Firdaus/Eksperimen_SML_Sahrul-Firdaus/namadataset_raw || true
+          ls -la SMSML_Sahrul-Firdaus/Eksperimen_SML_Sahrul-Firdaus/preprocessing || true
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
