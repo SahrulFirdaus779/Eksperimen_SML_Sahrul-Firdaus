@@ -31,11 +31,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas
 
-      - name: Run preprocessing
+      - name: Run preprocessing (repo root paths)
         run: |
-          python SMSML_Sahrul-Firdaus/Eksperimen_SML_Sahrul-Firdaus/preprocessing/automate_Sahrul-Firdaus.py \
-            --input SMSML_Sahrul-Firdaus/Eksperimen_SML_Sahrul-Firdaus/namadataset_raw/data_clustering.csv \
-            --output SMSML_Sahrul-Firdaus/Eksperimen_SML_Sahrul-Firdaus/preprocessing/namadataset_preprocessing.csv
+          python preprocessing/automate_Sahrul-Firdaus.py \
+            --input namadataset_raw/data_clustering.csv \
+            --output preprocessing/namadataset_preprocessing.csv
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
