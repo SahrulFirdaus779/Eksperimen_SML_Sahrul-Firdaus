@@ -1,0 +1,36 @@
+name: Preprocess Dataset
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'SMSML_Sahrul-Firdaus/Eksperimen_SML_Sahrul-Firdaus/**'
+
+jobs:
+  preprocess:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
+
+      - name: Run preprocessing
+        run: |
+          python SMSML_Sahrul-Firdaus/Eksperimen_SML_Sahrul-Firdaus/preprocessing/automate_Sahrul-Firdaus.py \
+            --input SMSML_Sahrul-Firdaus/Eksperimen_SML_Sahrul-Firdaus/namadataset_raw/data_clustering.csv \
+            --output SMSML_Sahrul-Firdaus/Eksperimen_SML_Sahrul-Firdaus/preprocessing/namadataset_preprocessing.csv
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: preprocessed-dataset
+          path: SMSML_Sahrul-Firdaus/Eksperimen_SML_Sahrul-Firdaus/preprocessing/namadataset_preprocessing.csv
